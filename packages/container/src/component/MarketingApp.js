@@ -12,7 +12,9 @@ export default () => {
             onNavigate: ({pathname: nextPathname}) => {
                 const {pathname} = history.location;
                 if (pathname !== nextPathname) {
+                    console.log('child is navigating', nextPathname)
                     history.push(nextPathname);
+                    console.log('Marketing location after', history.location)
                 }
             }
         });
