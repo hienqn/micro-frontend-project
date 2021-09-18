@@ -4,22 +4,25 @@ import App from './App';
 import { createMemoryHistory, createBrowserHistory } from 'history';
 // Mount function to start up the apps
 const mount = (el, { onNavigate, defaultHistory }) => {
-    const history = defaultHistory || createMemoryHistory();
+    const memoryHistory = defaultHistory || createMemoryHistory();
 
     if (onNavigate) {
-        history.listen( onNavigate );
+        memoryHistory.listen( onNavigate );
     }
 
     ReactDOM.render(
-      <App history={history}></App>,
+      <App history={memoryHistory}></App>,
       el,
     );
 
     return {
         onParentNavigate({pathname: nextPathname}) {
-            const {pathname} = history.location;
+            console.log('parent pathname', nextPathname)
+            const {pathname} = memoryHistory.location;
+            console.log('Parent is navigating', nextPathname);
             if (pathname !== nextPathname) {
-                history.push(nextPathname);
+                memoryHistory.push(nextPathname);
+                console.log('Marketing location after', memoryHistory.location)
             }
         }
     }
