@@ -1,4 +1,4 @@
-import { mount } from 'marketing/MarketingApp';
+import { mount } from 'auth/AuthApp';
 import React, { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ export default () => {
                 if (pathname !== nextPathname) {
                     console.log('child is navigating', nextPathname)
                     history.push(nextPathname);
-                    console.log('Marketing location after', history.location)
+                    console.log('auth location after', history.location)
                 }
             }
         });
