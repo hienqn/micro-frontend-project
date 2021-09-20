@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 
-export default () => {
+export default ({onSignIn}) => {
     const ref = useRef(null);
     const history = useHistory();
 
@@ -13,11 +13,10 @@ export default () => {
             onNavigate: ({pathname: nextPathname}) => {
                 const {pathname} = history.location;
                 if (pathname !== nextPathname) {
-                    console.log('child is navigating', nextPathname)
                     history.push(nextPathname);
-                    console.log('auth location after', history.location)
                 }
-            }
+            },
+            onSignIn
         });
 
         history.listen(onParentNavigate);
